@@ -67,22 +67,27 @@ Check out [`UltiSnips/javascript.snippets`](UltiSnips/javascript.snippets) to se
 | -------: | ------- |
 | `rrcc→`  | React Redux Class Component |
 | `rcc→`   | React Class Component |
+| `rccss→`   | React Class Component with CSS |
 | `rfc→`   | React Functional Component |
+| `rfcss→`   | React Functional Component with CSS |
 | `rsc→`   | React Styled Component |
 | `rsci→`   | React Styled Component Interpolation |
+| `reb→`   | React Error Boundary Component |
 
 
 #### Lifecycle
 
 | Trigger  | Content |
 | -------: | ------- |
-| `cwm→`   | `componentWillMount() {...}` |
+| `cwm→`   | `componentWillMount() {...}` **Depreciated** |
 | `cdm→`   | `componentDidMount() {...}` |
-| `cwrp→`  | `componentWillReceiveProps(nextProps) {...}` |
+| `cwrp→`  | `componentWillReceiveProps(nextProps) {...}` **Depreciated** |
 | `scup→`  | `shouldComponentUpdate(nextProps, nextState) {...}` |
-| `cwup→`  | `componentWillUpdate(nextProps, nextState) {...}` |
+| `cwup→`  | `componentWillUpdate(nextProps, nextState) {...}` **Depreciated**|
 | `cdup→`  | `componentDidUpdate(prevProps, prevState) {...}` |
 | `cwu→`   | `componentWillUnmount() {...}` |
+| `gdsfp→`   | `getDerivedStateFromProps(props, state) {...}` |
+| `gsbu→`   | `getSnapshotBeforeUpdate(prevProps, prevState) {...}` |
 | `ren→`   | `render() {...}` |
 
 
@@ -118,3 +123,5 @@ Check out [`UltiSnips/javascript.snippets`](UltiSnips/javascript.snippets) to se
 | `cn→`    | `className` |
 | `ref→`   | `ref` |
 | `pp→`    | `${props => props}` |
+| `ccon→`    | `React.createContext(...)` |
+
