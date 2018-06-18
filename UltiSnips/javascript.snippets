@@ -35,6 +35,29 @@ endsnippet
 snippet rcc "React Class Component" b
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
+
+class ${1:`!v expand('%:t:r')`} extends Component {
+	static propTypes = {};
+
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			<div>
+				$2
+			</div>
+		);
+	}
+}
+
+export default $1;
+endsnippet
+
+snippet rccss "React Class Component with CSS" b
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
 import styles from './${2:$1}.css';
 
 class ${1:`!v expand('%:t:r')`} extends Component {
@@ -60,6 +83,25 @@ export default $1;
 endsnippet
 
 snippet rfc "React Functional Component" b
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function ${1:`!v expand('%:t:r')`}(${2:{...props}}) {
+	return (
+		<div>
+			$3
+		</div>
+	);
+}
+
+$1.defaultProps = {};
+
+$1.propTypes = {};
+
+export default $1;
+endsnippet
+
+snippet rfcss "React Functional Component with CSS" b
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './${2:$1}.css';
@@ -101,6 +143,39 @@ const ${1:`!v expand('%:t:r')`} = styled.${2:div}\`${props => css\`
 export default $1;
 endsnippet
 
+snippet reb "React Error Boundry Component" b
+import React from 'react';
+import PropTypes from 'prop-types';
+
+class ErrorBoundary extends React.Component {
+	static propTypes = {
+		children: PropTypes.node.isRequired
+	}
+
+	constructor(props) {
+		super(props);
+		this.state = { hasError: false };
+	}
+
+	componentDidCatch(error, info) {
+		// Display fallback UI
+		this.setState({ hasError: true });
+		// log the error to an error reporting service
+		logErrorToMyService(error, info);
+	}
+
+	render() {
+		if (this.state.hasError) {
+			return $1
+	}
+		return this.props.children;
+	}
+}
+endsnippet
+
+
+
+# Utilties
 snippet pp "Get Props"
 ${props => props.${1}};
 endsnippet
@@ -121,6 +196,11 @@ this.setState({
 });
 endsnippet
 
+snippet setf "Set State Function"
+this.setState(state => ${1});
+endsnippet
+
+
 snippet props "Get Property" i
 this.props.${1}
 endsnippet
@@ -133,10 +213,30 @@ snippet ref "Ref" i
 ref={${1:ref} => { this.${2:name} = $1; }}
 endsnippet
 
+snippet ccon "Create Context" b
+const $1 = React.createContext(${2:""});
+endsnippet
 
-# Component Lifecycle
+
+
+# Component Lifecycles
 snippet cwm "Component Will Mount" b
 componentWillMount() {
+// This method is depreciated in React v17 use getDerivedStateFromProps
+	$1
+}
+endsnippet
+
+snippet cwrp "Component Will Receive Props" b
+componentWillReceiveProps(nextProps) {
+// This method is depreciated in React v17 use getDerivedStateFromProps
+	$1
+}
+endsnippet
+
+snippet cwup "Component Will Update" b
+componentWillUpdate(nextProps, nextState) {
+// This method is depreciated in React v17 use getSnapshotBeforeUpdate
 	$1
 }
 endsnippet
@@ -147,20 +247,8 @@ componentDidMount() {
 }
 endsnippet
 
-snippet cwrp "Component Will Receive Props" b
-componentWillReceiveProps(nextProps) {
-	$1
-}
-endsnippet
-
 snippet scup "Should Component Update" b
 shouldComponentUpdate(nextProps, nextState) {
-	$1
-}
-endsnippet
-
-snippet cwup "Component Will Update" b
-componentWillUpdate(nextProps, nextState) {
 	$1
 }
 endsnippet
@@ -177,6 +265,18 @@ componentWillUnmount() {
 }
 endsnippet
 
+snippet gdsfp "Get Derived State From Props" b
+static getDerivedStateFromProps(props, state) {
+	$1
+}
+endsnippet
+
+snippet gsbu "Get Snapshot Before Update" b
+getDerivedStateFromProps(prevProps, prevState) {
+	$1
+}
+endsnippet
+
 snippet ren "Render"
 render() {
 	return ${1:(
@@ -184,6 +284,7 @@ render() {
 	);}
 }
 endsnippet
+
 
 
 # PropTypes
